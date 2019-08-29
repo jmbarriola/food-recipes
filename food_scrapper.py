@@ -3,6 +3,7 @@ import urllib.request
 import time
 from bs4 import BeautifulSoup
 import re
+import numpy as np
 
 def make_request(url,headers):
     response = requests.get(url=url, headers=headers)
@@ -38,18 +39,19 @@ def fetch_categories(soup):
 
 def fetch_calories(soup,regex):
     # Extracts the numbers of calories
-    return regex.search(soup.find(itemprop="calories").text.strip()).group()
-
+    cal = soup.find(itemprop="calories")
+    return regex.search(cal.text.strip()).group() if cal is not None else None 
+    
 def fetch_nutrients(soup, nutrient_name):
     # Extract name and strips whitespace
-    return soup.find(itemprop=nutrient_name).text.strip()
+    nutrient = soup.find(itemprop=nutrient_name) 
+    return nutrient.text.strip() if nutrient is not None else None 
 
 def fetch_prep_time(soup):
     # Prep Time
     prep_time = soup.find('span',class_="ready-in-time")
     # Extract time if possible
-    prep_time = prep_time.text if prep_time is not None else prep_time
-    return prep_time
+    return prep_time.text if prep_time is not None else None
 
 def fetch_social_data(soup, item):
     return soup.find('meta',itemprop=item)['content']
