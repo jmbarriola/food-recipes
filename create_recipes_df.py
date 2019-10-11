@@ -10,7 +10,7 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko
 NUM_REGEX = re.compile(r'\d+') 
 # Final df
 
-RECIPE_FILE_NAME = 'recipes_test.json'
+RECIPE_FILE_NAME = 'recipes.json'
 RECIPE_KEYS = ['recipe_number','recipe_name','recipe_name_check', 'ingredients_list', 'categories_list',
                     'cal','fat','carb','prot','chol','sod','prep_time', 'rating', 'reviews', 'photos']
 
